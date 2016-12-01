@@ -5,11 +5,23 @@
 //  Created by iem on 01/12/2016.
 //  Copyright © 2016 iem. All rights reserved.
 //
-
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
 import UIKit
 import Social
 
 class ViewController: UIViewController,UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    
+    
     
     @IBOutlet weak var inputText: UITextField!
     let ACTIONS_COMP = 0
@@ -21,6 +33,8 @@ class ViewController: UIViewController,UIPickerViewDataSource, UIPickerViewDeleg
     
         override func viewDidLoad() {
         super.viewDidLoad()
+           
+             self.hideKeyboardWhenTappedAround() 
         // Do any additional setup after loading the view, typically from a nib.
             self.actions=["dors","mange","suis en cours","galère","cours"]
             self.feelings=[":)",";)",":O"]
@@ -102,6 +116,12 @@ class ViewController: UIViewController,UIPickerViewDataSource, UIPickerViewDeleg
         
 
     }
+    
+    
+
+   
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
